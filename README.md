@@ -2,7 +2,7 @@
 
 Projeto para o challenge
 
-Api de controle da plataforma de cursos envolvendo realidade virtual
+Api de controle da plataforma de cursos envolvendo realidade virtual para pessoas com pcd
 
 ## Endpoints
 
@@ -12,22 +12,24 @@ Api de controle da plataforma de cursos envolvendo realidade virtual
     - [alterar](#alterar-login)
     - [mostrar detalhes](#detalhes-do-login)
 - Professor
-    - cadastrar
-    - apagar
-    - alterar
-    - mostrar detalhes
+    - [cadastrar](#cadastrar-professor)
+    - [apagar](#apagar-professor)
+    - [alterar](#alterar-professor)
+    - [mostrar detalhes](#detalhes-do-professor)
 - Aluno
-    - cadastrar
-    - apagar
-    - alterar
-    - mostrar detalhes
+    - [cadastrar](#cadastrar-aluno)
+    - [apagar](#apagar-aluno)
+    - [alterar](#alterar-aluno)
+    - [mostrar detalhes](#detalhes-do-aluno)
 - Curso
-    - cadastrar
-    - apagar
-    - alterar
-    - mostrar detalhes
-    - listar todas
+    - [cadastrar](#cadastrar-curso)
+    - [apagar](#apagar-curso)
+    - [alterar](#alterar-curso)
+    - [mostrar detalhes](#detalhes-do-curso)
+    - [listar todas](#detalhes-do-curso-geral)
 ---
+
+## Endpoints de Login
 
 ### Cadastrar Login
 
@@ -73,6 +75,7 @@ Api de controle da plataforma de cursos envolvendo realidade virtual
 | 404 | Login não encontrado
 
 ----
+
 ### Alterar Login
 
 `PUT` /vlearn/api/login/{id}
@@ -135,4 +138,372 @@ Api de controle da plataforma de cursos envolvendo realidade virtual
 |-|-
 | 200 | dados do login retornados
 | 404 | Login não encontrado
+
+----
+
+## Endpoints de Professor
+
+### Cadastrar Professor
+
+`POST` /vlearn/api/professor
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| professor_id | number | sim | identificador unico do professor
+| nome | texto | sim | nome completo do professor
+| telefone | number | sim | telefone para contato do professor 
+| formacao | texto | sim | graduações do professor 
+| experiencia | texto | sim | experiencia profissional do professor
+| idiomas | texto | sim | idiomas do professor
+| status | texto | sim | status da conta do professor (1 = Ativo, 0 = Inativo)
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    formacao: "Tecnólogo...",
+    experiencia: "Trabalhei em...",
+    idiomas: "Português, Inglês",
+    status: '1'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | professor cadastrado com sucesso
+| 400 | campos inválidos
+
+----
+
+### Apagar Professor
+
+`DELETE` /vlearn/api/professor/{id}
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | No content
+| 404 | Professor não encontrado
+
+----
+
+### Alterar Professor
+
+`PUT` /vlearn/api/professor/{id}
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| professor_id | number | sim | identificador unico do professor
+| nome | texto | sim | nome completo do professor
+| telefone | number | sim | telefone para contato do professor 
+| formacao | texto | sim | graduações do professor 
+| experiencia | texto | sim | experiencia profissional do professor
+| idiomas | texto | sim | idiomas do professor
+| status | texto | sim | status da conta do professor (1 = Ativo, 0 = Inativo)
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    formacao: "Tecnólogo...",
+    experiencia: "Trabalhei em...",
+    idiomas: "Português, Inglês",
+    status: '1'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | professor alterado com sucesso
+| 400 | campos inválidos
+| 404 | Professor não encontrado
+----
+
+### Detalhes do Professor
+
+`GET` /vlearn/api/professor/{id}
+
+**Exemplo de corpo da resposta**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    formacao: "Tecnólogo...",
+    experiencia: "Trabalhei em...",
+    idiomas: "Português, Inglês",
+    status: '1'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | No content
+| 404 | Professor não encontrado
+
+----
+
+## Endpoints de Aluno
+
+### Cadastrar Aluno
+
+`POST` /vlearn/api/aluno
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| aluno_id | number | sim | identificador unico do aluno
+| nome | texto | sim | nome completo do aluno
+| telefone | number | sim | telefone para contato do aluno
+| tipo_pcd | texto | sim | tipo de pcf do aluno
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    tipo_pcd: 'Prótese perna direita'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | Aluno cadastrado com sucesso
+| 400 | campos inválidos
+
+----
+
+### Apagar Aluno
+
+`DELETE` /vlearn/api/aluno/{id}
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | No content
+| 404 | Aluno não encontrado
+
+----
+
+### Alterar Aluno
+
+`PUT` /vlearn/api/aluno/{id}
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| aluno_id | number | sim | identificador unico do aluno
+| nome | texto | sim | nome completo do aluno
+| telefone | number | sim | telefone para contato do aluno
+| tipo_pcd | texto | sim | tipo de pcf do aluno
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    tipo_pcd: 'Baixa visão'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | Aluno atualizado com sucesso
+| 400 | Campos inválidos
+| 404 | Aluno não encontrado
+
+----
+
+### Detalhes do Aluno
+
+`GET` /vlearn/api/aluno/{id}
+
+**Exemplo de corpo da resposta**
+
+```js
+{
+    professor_id: '1',
+    nome: 'Jorge Rodrigo',
+    telefone: '5511974825648',
+    tipo_pcd: 'Baixa visão'
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | No content
+| 404 | Aluno não encontrado
+
+----
+
+## Endpoints de Curso
+
+### Cadastrar Curso
+
+`POST` /vlearn/api/curso
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| curso_id | number | sim | identificador unico do curso
+| nome | texto | sim | nome do curso
+| descricao | texto | sim | descricao do curso
+| preco | number | sim | preço do curso
+| autor | texto | sim | autor do curso
+| duracao | number | sim | duração do curso em minutos
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    curso_id: '1',
+    nome: "Estrutura de computador",
+    descricao: "Este curso tem como propósito especializar pessoas em montagens de computadores",
+    preco: 98.40,
+    autor: "Jorge Rodrigo",
+    duracao: 1890
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | Curso cadastrado com sucesso
+| 400 | campos inválidos
+
+----
+
+### Apagar Curso
+
+`DELETE` /vlearn/api/curso/{id}
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 204 | No content
+| 404 | Curso não encontrado
+
+----
+
+### Alterar Curso
+
+`PUT` /vlearn/api/curso/{id}
+
+**Campos da Requisição**
+
+| campo | tipo | obrigatório | descrição 
+|-------|------|:-------------:|---
+| curso_id | number | sim | identificador unico do curso
+| nome | texto | sim | nome do curso
+| descricao | texto | sim | descricao do curso
+| preco | number | sim | preço do curso
+| autor | texto | sim | autor do curso
+| duracao | number | sim | duração do curso em minutos
+
+**Exemplo de corpo de requisição**
+
+```js
+{
+    curso_id: '1',
+    nome: "Estrutura de computador",
+    descricao: "Este curso tem como propósito especializar pessoas em montagens de computadores",
+    preco: 98.40,
+    autor: "Jorge Rodrigo",
+    duracao: 1890
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 201 | Curso atualizado com sucesso
+| 400 | campos inválidos
+| 404 | Curso não encontrado
+
+----
+
+### Detalhes do Curso
+
+`GET` /vlearn/api/curso/{id}
+
+**Exemplo de corpo de resposta**
+
+```js
+{
+    curso_id: '1',
+    nome: "Estrutura de computador",
+    descricao: "Este curso tem como propósito especializar pessoas em montagens de computadores",
+    preco: 98.40,
+    autor: "Jorge Rodrigo",
+    duracao: 1890
+}
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Dados do curso retornados com sucesso
+| 404 | Curso não encontrado
+
+----
+
+### Detalhes do Curso Geral
+
+`GET` /vlearn/api/curso
+
+**Exemplo de corpo de resposta**
+
+```js
+[{
+    curso_id: '1',
+    nome: "Estrutura de computador",
+    descricao: "Este curso tem como propósito especializar pessoas em montagens de computadores",
+    preco: 98.40,
+    autor: "Jorge Rodrigo",
+    duracao: 1890
+}]
+```
+
+**Códigos de Respostas**
+
+| código | descrição
+|-|-
+| 200 | Curso retornados com sucesso em forma de array
+| 404 | Curso não encontrado
 
