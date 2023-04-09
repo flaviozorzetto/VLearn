@@ -256,7 +256,7 @@ Api de controle da plataforma de cursos envolvendo realidade virtual para pessoa
 
 | código | descrição
 |-|-
-| 204 | No content
+| 200 | Dados do professor retornados com sucesso
 | 404 | Professor não encontrado
 
 ----
@@ -362,7 +362,7 @@ Api de controle da plataforma de cursos envolvendo realidade virtual para pessoa
 
 | código | descrição
 |-|-
-| 204 | No content
+| 200 | Dados do aluno retornados com sucesso
 | 404 | Aluno não encontrado
 
 ----
